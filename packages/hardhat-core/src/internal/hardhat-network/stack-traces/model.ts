@@ -143,9 +143,9 @@ export class Contract {
   }
 
   public addLocalFunction(func: ContractFunction) {
-    if (func.contract !== this) {
-      throw new Error("Function isn't local");
-    }
+    // if (func.contract !== this) {
+    //   throw new Error("Function isn't local");
+    // }
 
     if (
       func.visibility === ContractFunctionVisibility.PUBLIC ||
@@ -249,15 +249,15 @@ export class ContractFunction {
     public readonly name: string,
     public readonly type: ContractFunctionType,
     public readonly location: SourceLocation,
-    public readonly contract?: Contract,
+    // public readonly contract?: Contract,
     public readonly visibility?: ContractFunctionVisibility,
     public readonly isPayable?: boolean,
     public selector?: Uint8Array,
     public readonly paramTypes?: any[]
   ) {
-    if (contract !== undefined && !contract.location.contains(location)) {
-      throw new Error("Incompatible contract and function location");
-    }
+    // if (contract !== undefined && !contract.location.contains(location)) {
+    //   throw new Error("Incompatible contract and function location");
+    // }
   }
 
   public isValidCalldata(calldata: Uint8Array): boolean {

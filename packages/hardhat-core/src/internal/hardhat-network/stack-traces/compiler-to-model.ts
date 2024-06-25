@@ -247,7 +247,7 @@ function processFunctionDefinitionAstNode(
     functionDefinitionNode.name,
     functionType,
     functionLocation,
-    contract,
+    // contract,
     visibility,
     functionDefinitionNode.stateMutability === "payable",
     selector,
@@ -275,8 +275,8 @@ function processModifierDefinitionAstNode(
   const cf = new ContractFunction(
     modifierDefinitionNode.name,
     ContractFunctionType.MODIFIER,
-    functionLocation,
-    contract
+    functionLocation
+    // contract
   );
 
   contract.addLocalFunction(cf);
@@ -358,7 +358,7 @@ function processVariableDeclarationAstNode(
     variableDeclarationNode.name,
     ContractFunctionType.GETTER,
     functionLocation,
-    contract,
+    // contract,
     visibility,
     false, // Getters aren't payable
     getPublicVariableSelectorFromDeclarationAstNode(variableDeclarationNode),
