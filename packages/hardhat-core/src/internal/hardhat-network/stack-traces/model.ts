@@ -115,12 +115,12 @@ export class SourceLocation {
 }
 
 export class Contract {
-  public readonly localFunctions: ContractFunction[] = [];
   public readonly customErrors: CustomError[] = [];
 
   private _constructor: ContractFunction | undefined;
   private _fallback: ContractFunction | undefined;
   private _receive: ContractFunction | undefined;
+  private readonly _localFunctions: ContractFunction[] = [];
   private readonly _selectorHexToFunction: Map<string, ContractFunction> =
     new Map();
 
@@ -165,7 +165,7 @@ export class Contract {
       }
     }
 
-    this.localFunctions.push(func);
+    this._localFunctions.push(func);
   }
 
   public addCustomError(customError: CustomError) {
@@ -180,7 +180,7 @@ export class Contract {
       this._receive = baseContract._receive;
     }
 
-    for (const baseContractFunction of baseContract.localFunctions) {
+    for (const baseContractFunction of baseContract._localFunctions) {
       if (
         baseContractFunction.type !== ContractFunctionType.GETTER &&
         baseContractFunction.type !== ContractFunctionType.FUNCTION
@@ -296,6 +296,7 @@ export class Instruction {
     public readonly pc: number,
     public readonly opcode: Opcode,
     public readonly jumpType: JumpType,
+    // Used only for debugging
     public readonly pushData?: Buffer,
     public readonly location?: SourceLocation
   ) {}
