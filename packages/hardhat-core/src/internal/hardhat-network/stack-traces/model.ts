@@ -36,21 +36,12 @@ export enum ContractFunctionVisibility {
 }
 
 export class SourceFile {
-  public readonly contracts: Contract[] = [];
   public readonly functions: ContractFunction[] = [];
 
   constructor(
     public readonly sourceName: string,
     public readonly content: string
   ) {}
-
-  public addContract(contract: Contract) {
-    if (contract.location.file !== this) {
-      throw new Error("Trying to add a contract from another file");
-    }
-
-    this.contracts.push(contract);
-  }
 
   public addFunction(func: ContractFunction) {
     if (func.location.file !== this) {
