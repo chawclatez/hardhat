@@ -322,7 +322,7 @@ export class Bytecode {
     public readonly contract: Contract,
     public readonly isDeployment: boolean,
     public readonly normalizedCode: Buffer,
-    public readonly instructions: Instruction[],
+    instructions: Instruction[],
     public readonly libraryAddressPositions: number[],
     public readonly immutableReferences: ImmutableReference[],
     public readonly compilerVersion: string
